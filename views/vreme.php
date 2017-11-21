@@ -24,8 +24,11 @@ table {
 </style>
 <div class="wrap">
 <?php
-$url = "http://meteo.arso.gov.si/uploads/probase/www/fproduct/text/sl/forecast_STARI-VRH_SKOFJ-LOK_latest.xml";
+$url = "http://meteo.arso.gov.si/uploads/probase/www/observ/surface/text/sl/observationAms_ILIRS-BIS_latest.xml";
 $xml = simplexml_load_file($url);
+
+echo "<pre>";
+print_r($xml);
 
 $today = date("d.m.Y") . "<br>";
 $date_issued = strstr($xml->metData->tsValid_issued, '1:00 CET', true);
@@ -36,7 +39,7 @@ if($today = $date_issued){
     <thead>
       <tr>
         <td colspan="9">
-          <h5><strong>VRH SMUČIŠČA (<?= $xml->metData->domain_top[0] ?> m)</strong></h5>
+          <h5><strong><?= $xml->metData->domain_longTitle ?></strong></h5>
         </td>
       </tr>
       <tr>
